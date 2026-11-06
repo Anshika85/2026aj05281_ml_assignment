@@ -1,35 +1,84 @@
-# Cardiovascular Disease Risk Classification — ML Assignment 2
+# 🩺 Cardiovascular Disease Risk Prediction Portal
 
-## 1. Problem Statement
-This project focuses on predicting cardiovascular disease risk using clinical diagnostic parameters and physiological indicators. Using 5 machine learning classification algorithms, the system identifies high-risk cardiovascular patients to enable preventive clinical care. The pre-trained classifiers are deployed via an interactive Streamlit Web Dashboard on Streamlit Community Cloud without model retraining during inference.
+**BITS Pilani M.Tech AIML — Machine Learning Assignment 2**
 
-## 2. Dataset Description
-- **Domain:** Healthcare Analytics & Clinical Cardiology
-- **Dataset Size:** 920 patient instances (644 training samples, 276 test samples)
-- **Feature Count:** 14 continuous clinical features (`patient_age`, `systolic_bp`, `diastolic_bp`, `cholesterol_mg_dl`, `fasting_blood_sugar`, `bmi_index`, `resting_heart_rate`, `exercise_hours_weekly`, `smoking_pack_years`, `family_history_score`, `daily_sodium_intake`, `hba1c_level`, `stress_index`, `sleep_duration_hours`)
-- **Target Class:** Binary Medical Diagnosis (`0`: Low Cardiovascular Risk, `1`: Elevated Cardiovascular Risk)
+An end-to-end Machine Learning web application deployed on Streamlit Community Cloud that evaluates cardiovascular disease risk using the benchmark **UCI Heart Disease Dataset**.
 
-## 3. GitHub & Live Application Links
-- **GitHub Repository:** [Insert your personal GitHub repository URL here]
-- **Live Streamlit App:** [Insert your deployed Streamlit Cloud URL here]
+---
 
-## 4. Evaluation Metrics Comparison Table
+## 📊 Dataset Specifications
 
-| ML Model Name | Accuracy | AUC | Precision | Recall | F1 | MCC |
-| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Logistic Regression** | 0.906 | 0.976 | 0.898 | 0.883 | 0.891 | 0.808 |
-| **Decision Tree** | 0.768 | 0.796 | 0.780 | 0.650 | 0.709 | 0.525 |
-| **KNN** | 0.797 | 0.884 | 0.796 | 0.717 | 0.754 | 0.585 |
-| **Naive Bayes** | 0.909 | 0.967 | 0.913 | 0.875 | 0.894 | 0.815 |
-| **Support Vector Machine** | 0.891 | 0.960 | 0.902 | 0.842 | 0.871 | 0.779 |
+- **Source:** Standard UCI Heart Disease Benchmark Dataset
+- **Total Instances:** 920 clinical records
+- **Features:** 13 input physiological attributes + 1 binary target outcome label (`target`)
 
-## 5. Observations on Model Performance
+### Input Feature Details
 
-| ML Model Name | Observation about model performance |
-| :--- | :--- |
-| **Logistic Regression** | Linear decision boundary performs strongly on scaled continuous physiological metrics, giving high calibration stability across probability scores. |
-| **Decision Tree** | Captures discrete medical risk rules effectively, though prone to higher variance on borderline blood pressure values. |
-| **KNN** | Manhattan distance metric ($p=1$) handled clinical feature clusters cleanly, delivering balanced recall. |
-| **Naive Bayes** | High execution speed with strong recall, though conditional independence slightly bounds maximum precision. |
-| **Support Vector Machine** | Top overall performer with RBF kernel hyper-plane separation, achieving highest accuracy and MCC score across test cases. |
-| **Overall Winner** | **Support Vector Machine (SVM)** achieved top-tier predictive performance with an Accuracy of 0.891, AUC of 0.960, and MCC of 0.779. |
+| Feature | Attribute Name | Description & Type | Range / Values |
+| :--- | :--- | :--- | :--- |
+| 1 | `age` | Patient Age (Continuous) | 29 - 78 years |
+| 2 | `sex` | Gender (Binary) | 0 = Female, 1 = Male |
+| 3 | `cp` | Chest Pain Type (Categorical) | 0: Typical Angina, 1: Atypical Angina, 2: Non-anginal, 3: Asymptomatic |
+| 4 | `trestbps` | Resting Blood Pressure (Continuous) | 94 - 200 mm Hg |
+| 5 | `chol` | Serum Cholesterol (Continuous) | 126 - 564 mg/dl |
+| 6 | `fbs` | Fasting Blood Sugar > 120 mg/dl (Binary) | 0 = False, 1 = True |
+| 7 | `restecg` | Resting Electrocardiographic Results | 0: Normal, 1: ST-T wave abnormality, 2: Left ventricular hypertrophy |
+| 8 | `thalach` | Maximum Heart Rate Achieved (Continuous) | 71 - 202 bpm |
+| 9 | `exang` | Exercise Induced Angina (Binary) | 0 = No, 1 = Yes |
+| 10 | `oldpeak` | ST Depression Induced by Exercise (Continuous) | 0.0 - 6.2 |
+| 11 | `slope` | Slope of Peak Exercise ST Segment | 0: Upsloping, 1: Flat, 2: Downsloping |
+| 12 | `ca` | Number of Major Vessels Colored by Fluoroscopy | 0 - 3 |
+| 13 | `thal` | Thalassemia Status | 1: Normal, 2: Fixed defect, 3: Reversible defect |
+| 14 | **`target`** | **Cardiovascular Risk Outcome (Label)** | **0 = Low Risk, 1 = Elevated Risk** |
+
+---
+
+## ⚡ Trained Classification Models
+
+The training pipeline (`train.py`) fits a `StandardScaler` on input features and evaluates 5 classifiers:
+1. **Support Vector Machine (SVM)** (RBF Kernel)
+2. **Logistic Regression**
+3. **Decision Tree Classifier**
+4. **K-Nearest Neighbors (KNN)**
+5. **Gaussian Naive Bayes**
+
+All trained model weights and feature scalers are serialized inside the `model/` directory.
+
+---
+
+## 🛠️ Project Structure
+
+```
+.
+├── app.py              # Streamlit UI & inference dashboard
+├── train.py            # Model training & serialization pipeline
+├── test data.csv       # 920-instance UCI Heart Disease dataset
+├── requirements.txt    # Python dependency pinning
+├── README.md           # Project documentation
+└── model/              # Model artifacts directory
+    ├── scaler.pkl
+    ├── support_vector_machine.pkl
+    ├── logistic_regression.pkl
+    ├── decision_tree.pkl
+    ├── knn.pkl
+    └── naive_bayes.pkl
+```
+
+---
+
+## 🚀 Local Setup & Run
+
+1. **Install Dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+2. **Train Models:**
+   ```bash
+   python train.py
+   ```
+
+3. **Launch Web Application:**
+   ```bash
+   streamlit run app.py
+   ```
