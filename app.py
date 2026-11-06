@@ -81,7 +81,7 @@ if uploaded_csv is not None:
                 st.subheader("🎯 Diagnostic Confusion Matrix")
                 cm_data = confusion_matrix(y_test_true, y_pred_vals)
                 fig_cm, ax_cm = plt.subplots(figsize=(5, 3.8))
-                sns.heatmap(cm_data, annot=True, fmt="d", cmap="Teal", ax=ax_cm, cbar=False)
+                sns.heatmap(cm_data, annot=True, fmt="d", cmap="Blues", ax=ax_cm, cbar=False)
                 plt.xlabel("Predicted Risk Status")
                 plt.ylabel("Actual Risk Status")
                 st.pyplot(fig_cm)
