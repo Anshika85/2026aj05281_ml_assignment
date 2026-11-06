@@ -9,7 +9,7 @@ Cardiovascular diseases (CVDs) remain the leading cause of global mortality. Ear
 
 ---
 
-## b. Dataset description [ 1 mark ]
+## b. Dataset description
 - **Dataset Name:** UCI Heart Disease Benchmark Dataset
 - **Total Instances:** 920 clinical records
 - **Total Features:** 14 attributes (13 input physiological parameters + 1 binary target outcome variable)
@@ -35,13 +35,13 @@ Cardiovascular diseases (CVDs) remain the leading cause of global mortality. Ear
 
 ---
 
-## c. Github Repository Link [ 1 mark ]
+## c. Github Repository Link
 - **GitHub Repository:** [https://github.com/Anshika85/2026aj05281_ml_assignment](https://github.com/Anshika85/2026aj05281_ml_assignment)
 - **Live Streamlit App:** [https://2026aj05281mlassignment-np2fsr9urkdgs5blhwghtk.streamlit.app](https://2026aj05281mlassignment-np2fsr9urkdgs5blhwghtk.streamlit.app)
 
 ---
 
-## d. Models used: [ 5 marks ]
+## d. Models used:
 
 ### Model Evaluation Comparison Table
 
@@ -55,7 +55,7 @@ Cardiovascular diseases (CVDs) remain the leading cause of global mortality. Ear
 
 ---
 
-### Observations on Model Performance [ 3 marks ]
+### Observations on Model Performance
 
 | ML Model Name | Observation about model performance |
 | :--- | :--- |
